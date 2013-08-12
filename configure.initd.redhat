@@ -1,23 +1,24 @@
 #
-# ajaxterm     Startup script for ajaxterm
+# achilterm     Startup script for achilterm
 #
 # chkconfig: - 99 99
-# description: Ajaxterm is a yadda yadda yadda
-# processname: ajaxterm
-# pidfile: /var/run/ajaxterm.pid
-# version: 1.0 Kevin Reichhart - ajaxterminit at lastname dot org
+# description: Achilterm is a web based terminal
+# processname: achilterm
+# pidfile: /var/run/achilterm.pid
+# version: 1.0 Florent Gallaire <fgallaire@gmail.com>
+# from the ajaxterm script by Kevin Reichhart
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-if [ -f /etc/sysconfig/ajaxterm ]; then
-    . /etc/sysconfig/ajaxterm
+if [ -f /etc/sysconfig/achilterm ]; then
+    . /etc/sysconfig/achilterm
 fi
 
-ajaxterm=/usr/local/bin/ajaxterm
-prog=ajaxterm
-pidfile=${PIDFILE-/var/run/ajaxterm.pid}
-lockfile=${LOCKFILE-/var/lock/subsys/ajaxterm}
+achilterm=/usr/local/bin/achilterm
+prog=achilterm
+pidfile=${PIDFILE-/var/run/achilterm.pid}
+lockfile=${LOCKFILE-/var/lock/subsys/achilterm}
 port=${PORT-8022}
 user=${xUSER-nobody}
 RETVAL=0
@@ -25,7 +26,7 @@ RETVAL=0
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $ajaxterm --daemon --port=$port --uid=$user $OPTIONS
+    daemon $achilterm --daemon --port=$port --uid=$user $OPTIONS
     RETVAL=$?
     echo
     [ $RETVAL = 0 ] && touch ${lockfile}
@@ -33,14 +34,14 @@ start() {
 }
 stop() {
     echo -n $"Stopping $prog: "
-    killproc $ajaxterm
+    killproc $achilterm
     RETVAL=$?
     echo
     [ $RETVAL = 0 ] && rm -f ${lockfile} ${pidfile}
 }
 reload() {
     echo -n $"Reloading $prog: "
-    killproc $ajaxterm -HUP
+    killproc $achilterm -HUP
     RETVAL=$?
     echo
 }
@@ -54,7 +55,7 @@ case "$1" in
         stop
         ;;
     status)
-        status python ajaxterm
+        status python achilterm
         RETVAL=$?
         ;;
     restart)

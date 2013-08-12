@@ -15,18 +15,18 @@ etc=o.confdir
 port=o.port
 cmd=o.cmd
 bin=os.path.join(o.prefix,"bin")
-lib=os.path.join(o.prefix,"share/ajaxterm")
+lib=os.path.join(o.prefix,"share/achilterm")
 man=os.path.join(o.prefix,"share/man/man1")
 
-file("ajaxterm.bin","w").write(file("configure.ajaxterm.bin").read()%locals())
+file("achilterm.bin","w").write(file("configure.achilterm.bin").read()%locals())
 file("Makefile","w").write(file("configure.makefile").read()%locals())
 
 if os.path.isfile("/etc/gentoo-release"):
-	file("ajaxterm.initd","w").write(file("configure.initd.gentoo").read()%locals())
+	file("achilterm.initd","w").write(file("configure.initd.gentoo").read()%locals())
 elif os.path.isfile("/etc/fedora-release") or os.path.isfile("/etc/redhat-release"):
-	file("ajaxterm.initd","w").write(file("configure.initd.redhat").read()%locals())
+	file("achilterm.initd","w").write(file("configure.initd.redhat").read()%locals())
 else:
-	file("ajaxterm.initd","w").write(file("configure.initd.debian").read()%locals())
+	file("achilterm.initd","w").write(file("configure.initd.debian").read()%locals())
 
-os.system("chmod a+x ajaxterm.bin")
-os.system("chmod a+x ajaxterm.initd")
+os.system("chmod a+x achilterm.bin")
+os.system("chmod a+x achilterm.initd")
