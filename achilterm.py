@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" Ajaxterm """
+""" Achilterm """
 
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
@@ -472,8 +472,8 @@ class Multiplex:
 			except (IOError,OSError):
 				pass
 
-class AjaxTerm:
-	def __init__(self,cmd=None,index_file='ajaxterm.html'):
+class AchilTerm:
+	def __init__(self,cmd=None,index_file='achilterm.html'):
 		self.files={}
 		for i in ['css','html','js']:
 			for j in glob.glob('*.%s'%i):
@@ -525,8 +525,8 @@ def main():
 	parser.add_option("-c", "--command", dest="cmd", default=None,help="set the command (default: /bin/login or ssh localhost)")
 	parser.add_option("-l", "--log", action="store_true", dest="log",default=0,help="log requests to stderr (default: quiet mode)")
 	parser.add_option("-d", "--daemon", action="store_true", dest="daemon", default=0, help="run as daemon in the background")
-	parser.add_option("-P", "--pidfile",dest="pidfile",default="/var/run/ajaxterm.pid",help="set the pidfile (default: /var/run/ajaxterm.pid)")
-	parser.add_option("-i", "--index", dest="index_file", default="ajaxterm.html",help="default index file (default: ajaxterm.html)")
+	parser.add_option("-P", "--pidfile",dest="pidfile",default="/var/run/achilterm.pid",help="set the pidfile (default: /var/run/achilterm.pid)")
+	parser.add_option("-i", "--index", dest="index_file", default="achilterm.html",help="default index file (default: achilterm.html)")
 	parser.add_option("-u", "--uid", dest="uid", help="Set the daemon's user id")
 	(o, a) = parser.parse_args()
 	if o.daemon:
@@ -549,11 +549,11 @@ def main():
 				file(o.pidfile,'w+').write(str(pid)+'\n')
 			except:
 				pass
-			print 'AjaxTerm at http://localhost:%s/ pid: %d' % (o.port,pid)
+			print 'AchilTerm at http://localhost:%s/ pid: %d' % (o.port,pid)
 			sys.exit(0)
 	else:
-		print 'AjaxTerm at http://localhost:%s/' % o.port
-	at=AjaxTerm(o.cmd,o.index_file)
+		print 'AchilTerm at http://localhost:%s/' % o.port
+	at=AchilTerm(o.cmd,o.index_file)
 #	f=lambda:os.system('firefox http://localhost:%s/&'%o.port)
 #	qweb.qweb_wsgi_autorun(at,ip='localhost',port=int(o.port),threaded=0,log=o.log,callback_ready=None)
 	try:
