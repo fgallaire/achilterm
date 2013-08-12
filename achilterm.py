@@ -9,6 +9,7 @@ os.chdir(os.path.normpath(os.path.dirname(__file__)))
 sys.path[0:0]=glob.glob('../../python')
 
 import qweb
+import wsgiref.simple_server
 
 class Terminal:
 	def __init__(self,width=80,height=24):
@@ -554,10 +555,8 @@ def main():
 	else:
 		print 'AchilTerm at http://localhost:%s/' % o.port
 	at=AchilTerm(o.cmd,o.index_file)
-#	f=lambda:os.system('firefox http://localhost:%s/&'%o.port)
-#	qweb.qweb_wsgi_autorun(at,ip='localhost',port=int(o.port),threaded=0,log=o.log,callback_ready=None)
 	try:
-		qweb.QWebWSGIServer(at,ip='localhost',port=int(o.port),threaded=0,log=o.log).serve_forever()
+		wsgiref.simple_server.make_server('localhost', int(o.port), at).serve_forever()
 	except KeyboardInterrupt,e:
 		sys.excepthook(*sys.exc_info())
 	at.multi.die()

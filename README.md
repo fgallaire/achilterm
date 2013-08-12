@@ -2,8 +2,8 @@
 
 Achilterm is a web based terminal forked from Ajaxterm which was inspired by Anyterm.
 
-Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.3 or better.[[BR]]
-Achilterm is '''very simple to install''' on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.3.[[BR]]
+Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.5 or better.[[BR]]
+Achilterm is '''very simple to install''' on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.5.[[BR]]
 Achilterm is developed by Florent Gallaire <fgallaire@gmail.com> under the GPLv3.
 Achilterm codebase from Ajaxterm by Antony Lesuisse (email: al AT udev.org), License Public Domain.
 
