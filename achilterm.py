@@ -25,8 +25,14 @@ os.chdir(os.path.normpath(os.path.dirname(__file__)))
 # Optional: Add QWeb in sys path
 sys.path[0:0]=glob.glob('../../python')
 
-import qweb
+import webob
 import wsgiref.simple_server
+import gzip
+
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
 
 class Terminal:
 	def __init__(self,width=80,height=24):
@@ -502,13 +508,14 @@ class AchilTerm:
 		self.multi = Multiplex(cmd)
 		self.session = {}
 	def __call__(self, environ, start_response):
-		req = qweb.QWebRequest(environ, start_response,session=None)
-		if req.PATH_INFO.endswith('/u'):
-			s=req.REQUEST["s"]
-			k=req.REQUEST["k"]
-			c=req.REQUEST["c"]
-			w=req.REQUEST.int("w")
-			h=req.REQUEST.int("h")
+		req = webob.Request(environ)
+		res = webob.Response()
+		if req.environ['PATH_INFO'].endswith('/u'):
+			s=req.params["s"]
+			k=req.params["k"]
+			c=req.params["c"]
+			w=int(req.params.get("w", 0))
+			h=int(req.params.get("h", 0))
 			if s in self.session:
 				term=self.session[s]
 			else:
@@ -519,23 +526,29 @@ class AchilTerm:
 				self.multi.proc_write(term,k)
 			time.sleep(0.002)
 			dump=self.multi.dump(term,c)
-			req.response_headers['Content-Type']='text/xml'
+			res.content_type = 'text/xml'
+			res.charset = 'ISO-8859-1'
 			if isinstance(dump,str):
-				req.write(dump)
-				req.response_gzencode=1
+				res.content_encoding = 'gzip'
+				zbuf=StringIO.StringIO()
+				zfile=gzip.GzipFile(mode='wb', fileobj=zbuf)
+				zfile.write(''.join(dump))
+				zfile.close()
+				zbuf=zbuf.getvalue()
+				res.write(zbuf)
 			else:
 				del self.session[s]
-				req.write('<?xml version="1.0"?><idem></idem>')
+				res.write('<?xml version="1.0"?><idem></idem>')
 #			print "sessions %r"%self.session
 		else:
-			n=os.path.basename(req.PATH_INFO)
+			n=os.path.basename(req.environ['PATH_INFO'])
 			if n in self.files:
-				req.response_headers['Content-Type'] = self.mime.get(os.path.splitext(n)[1].lower(), 'application/octet-stream')
-				req.write(self.files[n])
+				res.content_type = self.mime.get(os.path.splitext(n)[1].lower(), 'application/octet-stream')
+				res.write(self.files[n])
 			else:
-				req.response_headers['Content-Type'] = 'text/html; charset=UTF-8'
-				req.write(self.files['index'])
-		return req
+				res.content_type = 'text/html; charset=UTF-8'
+				res.write(self.files['index'])
+		return res(environ, start_response)
 
 def main():
 	parser = optparse.OptionParser()
