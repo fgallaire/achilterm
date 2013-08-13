@@ -511,9 +511,9 @@ class AchilTerm:
 		req = webob.Request(environ)
 		res = webob.Response()
 		if req.environ['PATH_INFO'].endswith('/u'):
-			s=req.params["s"]
-			k=req.params["k"]
-			c=req.params["c"]
+			s=req.params.get("s","")
+			k=req.params.get("k","")
+			c=req.params.get("c","")
 			w=int(req.params.get("w", 0))
 			h=int(req.params.get("h", 0))
 			if s in self.session:
