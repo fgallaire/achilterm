@@ -7,6 +7,7 @@ Achilterm is '''very simple to install''' on Linux, MacOS X, FreeBSD, Solaris, c
 Achilterm is developed by Florent Gallaire <fgallaire@gmail.com> under the AGPLv3.
 Achilterm codebase from Ajaxterm by Antony Lesuisse (email: al AT udev.org), License Public Domain.
 
+Achilterm is Ajaxterm ported from qweb to WebOb and without Sarissa dependency.
 
 == Download and Install ==
 
@@ -86,4 +87,4 @@ options:
      parallel connection for keypresses. The anyterm approch is better
      when there aren't any keypress.
 
- * Achilterm files are released under the AGPLv3, (except [http://sarissa.sourceforge.net/doc/ sarissa*] which are LGPL).
+ * Achilterm files are released under the AGPLv3.
