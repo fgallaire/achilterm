@@ -118,13 +118,7 @@ achilterm.Terminal_ctor=function(id,width,height) {
 						window.clearTimeout(error_timeout);
 						de=r.responseXML.documentElement;
 						if(de.tagName=="pre") {
-							if(ie) {
-								Sarissa.updateContentFromNode(de, dterm);
-							} else {
-								Sarissa.updateContentFromNode(de, dterm);
-//								old=div.firstChild;
-//								div.replaceChild(de,old);
-							}
+                    					dterm.innerHTML = r.responseText;
 							rmax=100;
 						} else {
 							rmax*=2;
