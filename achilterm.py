@@ -21,10 +21,6 @@
 
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
-os.chdir(os.path.normpath(os.path.dirname(__file__)))
-# Optional: Add QWeb in sys path
-sys.path[0:0]=glob.glob('../../python')
-
 import webob
 import wsgiref.simple_server
 import gzip
@@ -392,7 +388,7 @@ class SynchronizedMethod:
 
 class Multiplex:
 	def __init__(self,cmd=None):
-		signal.signal(signal.SIGCHLD, signal.SIG_IGN)
+		#signal.signal(signal.SIGCHLD, signal.SIG_IGN)
 		self.cmd=cmd
 		self.proc={}
 		self.lock=threading.RLock()
