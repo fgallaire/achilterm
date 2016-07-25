@@ -33,9 +33,11 @@
 
 <p>Achilterm is a web based terminal forked from Ajaxterm which was inspired by Anyterm.</p>
 
-<p>Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.5 or better.[[BR]]
-Achilterm is '''very simple to install''' on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.5.[[BR]]
-Achilterm is developed by Florent Gallaire <a href="mailto:fgallaire@gmail.com">fgallaire@gmail.com</a> under the AGPLv3.
+<p>Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.5 or better.</p>
+
+<p>Achilterm is <strong>very simple to install</strong> on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.5.</p>
+
+<p>Achilterm is developed by Florent Gallaire <a href="mailto:fgallaire@gmail.com">fgallaire@gmail.com</a> under the AGPLv3.
 Achilterm codebase from Ajaxterm by Antony Lesuisse (email: al AT udev.org), License Public Domain.</p>
 
 <p>Achilterm is Ajaxterm ported from qweb to WebOb and without Sarissa dependency.</p>
@@ -43,13 +45,14 @@ Achilterm codebase from Ajaxterm by Antony Lesuisse (email: al AT udev.org), Lic
 <h2>
 <a id="download-and-install" class="anchor" href="#download-and-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download and Install</h2>
 
-<p>To install Achilterm issue the following commands:
-{{{
-git clone <a href="https://github.com/fgallaire/achilterm.git">https://github.com/fgallaire/achilterm.git</a>
+<p>To install Achilterm issue the following commands:</p>
+
+<pre><code>git clone https://github.com/fgallaire/achilterm.git
 cd achilterm
 ./achilterm.py
-}}}
-Then point your browser to this URL : http://localhost:8022/</p>
+</code></pre>
+
+<p>Then point your browser to this URL : http://localhost:8022/</p>
 
 <h2>
 <a id="documentation-and-caveats" class="anchor" href="#documentation-and-caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation and Caveats</h2>
@@ -58,34 +61,35 @@ Then point your browser to this URL : http://localhost:8022/</p>
 <li><p>Achilterm only support latin1, if you use Ubuntu or any LANG==en_US.UTF-8 distribution don't forget to "unset LANG".</p></li>
 <li><p>If run as root achilterm will run /bin/login, otherwise it will run ssh
 localhost. To use an other command use the -c option.</p></li>
-<li><p>By default Achilterm only listen at 127.0.0.1:8022. For remote access, it is
-strongly recommended to use '''https SSL/TLS''', and that is simple to
-configure if you use the apache web server using mod_proxy.[[BR]][[BR]]
-Using ssl will also speed up achilterm (probably because of keepalive).[[BR]][[BR]]
-Here is an configuration example:</p></li>
+<li>
+<p>By default Achilterm only listen at 127.0.0.1:8022. For remote access, it is
+strongly recommended to use <strong>https SSL/TLS</strong>, and that is simple to
+configure if you use the apache web server using mod_proxy.</p>
+
+<p>Using ssl will also speed up achilterm (probably because of keepalive).</p>
+
+<p>Here is an configuration example:</p>
+</li>
 </ul>
 
-<p>{{{
-    Listen 443
-    NameVirtualHost *:443</p>
+<pre><code>    Listen 443
+    NameVirtualHost *:443
 
-<pre><code>&lt;VirtualHost *:443&gt;
-   ServerName localhost
-   SSLEngine On
-   SSLCertificateKeyFile ssl/apache.pem
-   SSLCertificateFile ssl/apache.pem
+    &lt;VirtualHost *:443&gt;
+       ServerName localhost
+       SSLEngine On
+       SSLCertificateKeyFile ssl/apache.pem
+       SSLCertificateFile ssl/apache.pem
 
-   ProxyRequests Off
-   &lt;Proxy *&gt;
-           Order deny,allow
-           Allow from all
-   &lt;/Proxy&gt;
-   ProxyPass /achilterm/ http://localhost:8022/
-   ProxyPassReverse /achilterm/ http://localhost:8022/
-&lt;/VirtualHost&gt;
+       ProxyRequests Off
+       &lt;Proxy *&gt;
+               Order deny,allow
+               Allow from all
+       &lt;/Proxy&gt;
+       ProxyPass /achilterm/ http://localhost:8022/
+       ProxyPassReverse /achilterm/ http://localhost:8022/
+    &lt;/VirtualHost&gt;
 </code></pre>
-
-<p>}}}</p>
 
 <ul>
 <li><p>Using GET HTTP request seems to speed up achilterm, just click on GET in the
@@ -94,10 +98,9 @@ any proxy). I usually enable it after the login.</p></li>
 <li><p>Achilterm commandline usage:</p></li>
 </ul>
 
-<p>{{{
-usage: achilterm.py [options]</p>
+<pre><code>usage: achilterm.py [options]
 
-<p>options:
+options:
   -h, --help            show this help message and exit
   -pPORT, --port=PORT   Set the TCP port (default: 8022)
   -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
@@ -108,7 +111,7 @@ usage: achilterm.py [options]</p>
   -iINDEX_FILE, --index=INDEX_FILE
                         default index file (default: achilterm.html)
   -uUID, --uid=UID      Set the daemon's user id
-}}}</p>
+</code></pre>
 
 <ul>
 <li>
