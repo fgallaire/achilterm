@@ -1,6 +1,6 @@
 #!/sbin/runscript
 
-# AchilTerm Gentoo script 2013 Florent Gallaire
+# Achilterm Gentoo script 2013 Florent Gallaire
 # From the AjaxTerm Gentoo script by Mark Gillespie 
 
 DAEMON=%(bin)s/achilterm
@@ -14,14 +14,14 @@ depend()
 
 start()
 {
-    ebegin "Starting AchilTerm on port $PORT"
+    ebegin "Starting Achilterm on port $PORT"
     start-stop-daemon --start --pidfile $PIDFILE --exec $DAEMON -- --daemon --port=$PORT --uid=nobody
     eend $?
 }
 
 stop()
 {
-    ebegin "Stopping AchilTerm"
+    ebegin "Stopping Achilterm"
     start-stop-daemon  --stop --pidfile $PIDFILE 
     rm -f $PIDFILE 
     eend $?

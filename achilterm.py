@@ -576,10 +576,10 @@ def main():
 				file(o.pidfile,'w+').write(str(pid)+'\n')
 			except:
 				pass
-			print 'AchilTerm at http://localhost:%s/ pid: %d' % (o.port,pid)
+			print 'Achilterm at http://localhost:%s/ pid: %d' % (o.port,pid)
 			sys.exit(0)
 	else:
-		print 'AchilTerm at http://localhost:%s/' % o.port
+		print 'Achilterm at http://localhost:%s/' % o.port
 	at=AchilTerm(o.cmd,o.index_file)
 	try:
 		wsgiref.simple_server.make_server('localhost', int(o.port), at).serve_forever()
