@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.1'
+version = '1.0'
 
 setup(name='achilterm',
       version=version,
@@ -9,5 +9,5 @@ setup(name='achilterm',
       py_modules=['achilterm'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=['webob'],
+      install_requires=['webob<1.0'],
       )
