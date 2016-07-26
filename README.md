@@ -23,6 +23,8 @@ Then point your browser to this URL : http://localhost:8022/
 
 ## Documentation and Caveats
 
+ * Achilterm only support WebOb < 1.0
+
  * Achilterm only support latin1, if you use Ubuntu or any LANG==en_US.UTF-8 distribution don't forget to "unset LANG".
 
  * If run as root achilterm will run /bin/login, otherwise it will run ssh
