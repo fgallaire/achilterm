@@ -44,7 +44,7 @@
 <h2>
 <a id="download-and-install" class="anchor" href="#download-and-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download and Install</h2>
 
-<p>To install Achilterm issue the following commands:</p>
+<p>To install Achilterm use the following commands:</p>
 
 <pre><code>git clone https://github.com/fgallaire/achilterm.git
 cd achilterm
@@ -57,14 +57,14 @@ cd achilterm
 <a id="documentation-and-caveats" class="anchor" href="#documentation-and-caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation and Caveats</h2>
 
 <ul>
-<li><p>Achilterm only support WebOb &lt; 1.0</p></li>
-<li><p>Achilterm only support latin1, if you use Ubuntu or any LANG==en_US.UTF-8 distribution don't forget to "unset LANG".</p></li>
+<li><p>Achilterm require WebOb &gt;= 1.2</p></li>
+<li><p>Achilterm only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>.</p></li>
 <li><p>If run as root achilterm will run /bin/login, otherwise it will run ssh
 localhost. To use an other command use the -c option.</p></li>
 <li>
 <p>By default Achilterm only listen at <code>127.0.0.1:8022</code>. For remote access, it is
 strongly recommended to use <strong>https SSL/TLS</strong>, and that is simple to
-configure if you use the apache web server using mod_proxy.</p>
+configure if you use the apache web server using <code>mod_proxy</code>.</p>
 
 <p>Using ssl will also speed up achilterm (probably because of keepalive).</p>
 </li>
