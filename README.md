@@ -12,7 +12,7 @@ Achilterm is developed by Florent Gallaire <fgallaire@gmail.com>.
 
 ## Download and Install
 
-To install Achilterm issue the following commands:
+To install Achilterm use the following commands:
 ```
 git clone https://github.com/fgallaire/achilterm.git
 cd achilterm
@@ -24,14 +24,14 @@ Then point your browser to this URL : `http://localhost:8022/`
 
  * Achilterm require WebOb >= 1.2
 
- * Achilterm only support latin1, if you use Ubuntu or any LANG==en_US.UTF-8 distribution don't forget to "unset LANG".
+ * Achilterm only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`.
 
  * If run as root achilterm will run /bin/login, otherwise it will run ssh
    localhost. To use an other command use the -c option.
 
  * By default Achilterm only listen at `127.0.0.1:8022`. For remote access, it is
    strongly recommended to use **https SSL/TLS**, and that is simple to
-   configure if you use the apache web server using mod_proxy.
+   configure if you use the apache web server using `mod_proxy`.
 
    Using ssl will also speed up achilterm (probably because of keepalive).
 
