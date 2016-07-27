@@ -4,9 +4,9 @@ Achilterm is a web based terminal forked from Ajaxterm which was inspired by Any
 
 Achilterm is Ajaxterm ported from QWeb to WebOb and without Sarissa dependency.
 
-Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.5 or better.
+Achilterm is written in Python (and some AJAX javascript for client side).
 
-Achilterm is **very simple to install** on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.5.
+Achilterm is **very simple to install** on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs Python.
 
 Achilterm is developed by Florent Gallaire <fgallaire@gmail.com>.
 
@@ -22,7 +22,9 @@ Then point your browser to this URL : `http://localhost:8022/`
 
 ## Documentation and Caveats
 
- * Achilterm require WebOb >= 1.2
+ * Achilterm 0.12 require WebOb >= 1.2 (use it with Python 2.6 and 2.7)
+ 
+ * Achilterm 0.11 require WebOb < 1.0 (use it with Python 2.5)
 
  * Achilterm only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`.
 
