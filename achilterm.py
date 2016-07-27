@@ -469,7 +469,7 @@ class Multiplex:
 			self.proc_kill(fd)
 	def proc_write(self,fd,s):
 		try:
-			os.write(fd,s)
+			os.write(fd,s.encode('latin1'))
 		except (IOError,OSError):
 			self.proc_kill(fd)
 	def dump(self,fd,color=1):
@@ -504,7 +504,7 @@ class AchilTerm:
 		self.multi = Multiplex(cmd)
 		self.session = {}
 	def __call__(self, environ, start_response):
-		req = webob.Request(environ)
+		req = webob.Request(environ).decode('latin1')
 		res = webob.Response()
 		if req.environ['PATH_INFO'].endswith('/u'):
 			s=req.params.get("s","")

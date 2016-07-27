@@ -13,5 +13,5 @@ setup(name='Achilterm',
       py_modules=['achilterm'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=['webob<1.0'],
+      install_requires=['webob>=1.2'],
       )
