@@ -35,9 +35,9 @@
 
 <p>Achilterm is Ajaxterm ported from QWeb to WebOb and without Sarissa dependency.</p>
 
-<p>Achilterm is written in python (and some AJAX javascript for client side) and depends only on python2.5 or better.</p>
+<p>Achilterm is written in Python (and some AJAX javascript for client side).</p>
 
-<p>Achilterm is <strong>very simple to install</strong> on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs python2.5.</p>
+<p>Achilterm is <strong>very simple to install</strong> on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs Python.</p>
 
 <p>Achilterm is developed by Florent Gallaire <a href="mailto:fgallaire@gmail.com">fgallaire@gmail.com</a>.</p>
 
@@ -57,7 +57,8 @@ cd achilterm
 <a id="documentation-and-caveats" class="anchor" href="#documentation-and-caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation and Caveats</h2>
 
 <ul>
-<li><p>Achilterm require WebOb &gt;= 1.2</p></li>
+<li><p>Achilterm 0.12 require WebOb &gt;= 1.2 (use it with Python 2.6 and 2.7)</p></li>
+<li><p>Achilterm 0.11 require WebOb &lt; 1.0 (use it with Python 2.5)</p></li>
 <li><p>Achilterm only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>.</p></li>
 <li><p>If run as root achilterm will run /bin/login, otherwise it will run ssh
 localhost. To use an other command use the -c option.</p></li>
