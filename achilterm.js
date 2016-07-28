@@ -218,7 +218,7 @@ achilterm.Terminal_ctor=function(id,width,height) {
 			if(k=="+") {
 				queue("%2B");
 			} else {
-				queue(escape(k));
+				queue(encodeURIComponent(k));
 			}
 		}
 		ev.cancelBubble=true;

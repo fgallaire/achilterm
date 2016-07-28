@@ -93,15 +93,6 @@ class Terminal:
 		for i in [i[4] for i in dir(self) if i.startswith('csi_') and len(i)==5]:
 			if not self.csi_seq.has_key(i):
 				self.csi_seq[i]=(getattr(self,'csi_'+i),[1])
-		# Init 0-256 to latin1 and html translation table
-		self.trl1=""
-		for i in range(256):
-			if i<32:
-				self.trl1+=" "
-			elif i<127 or i>160:
-				self.trl1+=chr(i)
-			else:
-				self.trl1+="?"
 		self.trhtml=""
 		for i in range(256):
 			if i==0x0a or (i>32 and i<127) or i>160:
@@ -321,6 +312,7 @@ class Terminal:
 					break
 #		if self.buf=='': print "ESC %r\n"%e
 	def write(self,s):
+		s = s.decode('utf-8')
 		for i in s:
 			if len(self.buf) or (i in self.esc_seq):
 				self.buf+=i
@@ -333,13 +325,6 @@ class Terminal:
 		b=self.outbuf
 		self.outbuf=""
 		return b
-	def dump(self):
-		r=''
-		for i in self.scr:
-			r+=chr(i&255)
-		return r
-	def dumplatin1(self):
-		return self.dump().translate(self.trl1)
 	def dumphtml(self,color=1):
 		h=self.height
 		w=self.width
@@ -370,7 +355,7 @@ class Terminal:
 #			print self
 			return r
 	def __repr__(self):
-		d=self.dumplatin1()
+		d=self.scr
 		r=""
 		for i in range(self.height):
 			r+="|%s|\n"%d[self.width*i:self.width*(i+1)]
@@ -469,7 +454,7 @@ class Multiplex:
 			self.proc_kill(fd)
 	def proc_write(self,fd,s):
 		try:
-			os.write(fd,s.encode('latin1'))
+			os.write(fd,s.encode('utf-8'))
 		except (IOError,OSError):
 			self.proc_kill(fd)
 	def dump(self,fd,color=1):
@@ -504,7 +489,7 @@ class AchilTerm:
 		self.multi = Multiplex(cmd)
 		self.session = {}
 	def __call__(self, environ, start_response):
-		req = webob.Request(environ).decode('latin1')
+		req = webob.Request(environ)
 		res = webob.Response()
 		if req.environ['PATH_INFO'].endswith('/u'):
 			s=req.params.get("s","")
