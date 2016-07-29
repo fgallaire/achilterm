@@ -31,13 +31,13 @@
         <h1>
 <a id="achilterm" class="anchor" href="#achilterm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Achilterm</h1>
 
-<p>Achilterm is a web based terminal forked from Ajaxterm which was inspired by Anyterm.</p>
-
-<p>Achilterm is Ajaxterm ported from QWeb to WebOb and without Sarissa dependency.</p>
+<p>Achilterm is an <strong>UTF-8</strong> web based terminal.</p>
 
 <p>Achilterm is written in Python (and some AJAX javascript for client side).</p>
 
 <p>Achilterm is <strong>very simple to install</strong> on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs Python.</p>
+
+<p>Achilterm is initially forked from Ajaxterm which was inspired by Anyterm.</p>
 
 <p>Achilterm is developed by Florent Gallaire <a href="mailto:fgallaire@gmail.com">fgallaire@gmail.com</a>.</p>
 
@@ -57,9 +57,8 @@ cd achilterm
 <a id="documentation-and-caveats" class="anchor" href="#documentation-and-caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation and Caveats</h2>
 
 <ul>
-<li><p>Achilterm 0.12 require WebOb &gt;= 1.2 (use it with Python 2.6 and 2.7)</p></li>
-<li><p>Achilterm 0.11 require WebOb &lt; 1.0 (use it with Python 2.5)</p></li>
-<li><p>Achilterm only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>.</p></li>
+<li><p>Achilterm support Python 2.5 and above</p></li>
+<li><p>Achilterm require WebOb &gt;= 1.0</p></li>
 <li><p>If run as root achilterm will run /bin/login, otherwise it will run ssh
 localhost. To use an other command use the -c option.</p></li>
 <li>
@@ -73,6 +72,24 @@ configure if you use the apache web server using <code>mod_proxy</code>.</p>
 interface, but be warned that your keystrokes might be loggued (by apache or
 any proxy). I usually enable it after the login.</p></li>
 </ul>
+
+<h2>
+<a id="commandline-usage" class="anchor" href="#commandline-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commandline usage:</h2>
+
+<pre><code>usage: achilterm.py [options]
+
+options:
+  -h, --help            show this help message and exit
+  -pPORT, --port=PORT   Set the TCP port (default: 8022)
+  -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
+  -l, --log             log requests to stderr (default: quiet mode)
+  -d, --daemon          run as daemon in the background
+  -PPIDFILE, --pidfile=PIDFILE
+                        set the pidfile (default: /var/run/achilterm.pid)
+  -iINDEX_FILE, --index=INDEX_FILE
+                        default index file (default: achilterm.html)
+  -uUID, --uid=UID      Set the daemon's user id
+</code></pre>
 
 <h2>
 <a id="configuration-example" class="anchor" href="#configuration-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration example</h2>
@@ -97,22 +114,14 @@ any proxy). I usually enable it after the login.</p></li>
 </code></pre>
 
 <h2>
-<a id="commandline-usage" class="anchor" href="#commandline-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commandline usage:</h2>
+<a id="old-versions" class="anchor" href="#old-versions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Old versions</h2>
 
-<pre><code>usage: achilterm.py [options]
+<p>Old Achilterm versions only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>.</p>
 
-options:
-  -h, --help            show this help message and exit
-  -pPORT, --port=PORT   Set the TCP port (default: 8022)
-  -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
-  -l, --log             log requests to stderr (default: quiet mode)
-  -d, --daemon          run as daemon in the background
-  -PPIDFILE, --pidfile=PIDFILE
-                        set the pidfile (default: /var/run/achilterm.pid)
-  -iINDEX_FILE, --index=INDEX_FILE
-                        default index file (default: achilterm.html)
-  -uUID, --uid=UID      Set the daemon's user id
-</code></pre>
+<ul>
+<li><p>Achilterm 0.12 require WebOb &gt;= 1.2 (use it with Python 2.6 and 2.7)</p></li>
+<li><p>Achilterm 0.11 require WebOb &lt; 1.0 (use it with Python 2.5)</p></li>
+</ul>
 
 <h2>
 <a id="compared-to-anyterm" class="anchor" href="#compared-to-anyterm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compared to anyterm:</h2>
