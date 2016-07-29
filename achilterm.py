@@ -93,14 +93,6 @@ class Terminal:
 		for i in [i[4] for i in dir(self) if i.startswith('csi_') and len(i)==5]:
 			if not self.csi_seq.has_key(i):
 				self.csi_seq[i]=(getattr(self,'csi_'+i),[1])
-		self.trhtml=""
-		for i in range(256):
-			if i==0x0a or (i>32 and i<127) or i>160:
-				self.trhtml+=chr(i)
-			elif i<=32:
-				self.trhtml+="\xa0"
-			else:
-				self.trhtml+="?"
 	def reset(self,s=""):
 		self.scr=array.array('i',[0x000700]*(self.width*self.height))
 		self.st=0
@@ -341,13 +333,18 @@ class Terminal:
 				bg,fg=1,7
 			if (bg!=span_bg or fg!=span_fg or i==h*w-1):
 				if len(span):
-					r+='<span class="f%d b%d">%s</span>'%(span_fg,span_bg,cgi.escape(span.translate(self.trhtml)))
+					r+='<span class="f%d b%d">%s</span>'%(span_fg,span_bg,cgi.escape(span.encode('utf8')))
 				span=""
 				span_bg,span_fg=bg,fg
-			span+=chr(c)
+                        if c == 0:
+                                span+=' '
+                        elif c > 0x10000:
+                                span+='?'
+                        else:
+                                span+=unichr(c&0xFFFF)
 			if i%w==w-1:
 				span+='\n'
-		r='<?xml version="1.0" encoding="ISO-8859-1"?><pre class="term">%s</pre>'%r
+		r='<?xml version="1.0" encoding="UTF-8"?><pre class="term">%s</pre>'%r
 		if self.last_html==r:
 			return '<?xml version="1.0"?><idem></idem>'
 		else:
@@ -508,7 +505,6 @@ class AchilTerm:
 			time.sleep(0.002)
 			dump=self.multi.dump(term,c)
 			res.content_type = 'text/xml'
-			res.charset = 'ISO-8859-1'
 			if isinstance(dump,str):
 				res.content_encoding = 'gzip'
 				zbuf=StringIO.StringIO()
