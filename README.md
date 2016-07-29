@@ -1,12 +1,12 @@
 # Achilterm
 
-Achilterm is a web based terminal forked from Ajaxterm which was inspired by Anyterm.
-
-Achilterm is Ajaxterm ported from QWeb to WebOb and without Sarissa dependency.
+Achilterm is an **UTF-8** web based terminal.
 
 Achilterm is written in Python (and some AJAX javascript for client side).
 
 Achilterm is **very simple to install** on Linux, MacOS X, FreeBSD, Solaris, cygwin and any Unix that runs Python.
+
+Achilterm is initially forked from Ajaxterm which was inspired by Anyterm.
 
 Achilterm is developed by Florent Gallaire <fgallaire@gmail.com>.
 
@@ -22,11 +22,9 @@ Then point your browser to this URL : `http://localhost:8022/`
 
 ## Documentation and Caveats
 
- * Achilterm 0.12 require WebOb >= 1.2 (use it with Python 2.6 and 2.7)
+ * Achilterm support Python 2.5 and above
  
- * Achilterm 0.11 require WebOb < 1.0 (use it with Python 2.5)
-
- * Achilterm only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`.
+ * Achilterm require WebOb >= 1.0
 
  * If run as root achilterm will run /bin/login, otherwise it will run ssh
    localhost. To use an other command use the -c option.
@@ -41,6 +39,24 @@ Then point your browser to this URL : `http://localhost:8022/`
    interface, but be warned that your keystrokes might be loggued (by apache or
    any proxy). I usually enable it after the login.
 
+
+## Commandline usage:
+
+```
+usage: achilterm.py [options]
+
+options:
+  -h, --help            show this help message and exit
+  -pPORT, --port=PORT   Set the TCP port (default: 8022)
+  -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
+  -l, --log             log requests to stderr (default: quiet mode)
+  -d, --daemon          run as daemon in the background
+  -PPIDFILE, --pidfile=PIDFILE
+                        set the pidfile (default: /var/run/achilterm.pid)
+  -iINDEX_FILE, --index=INDEX_FILE
+                        default index file (default: achilterm.html)
+  -uUID, --uid=UID      Set the daemon's user id
+```
 
 ## Configuration example
 
@@ -64,23 +80,13 @@ Then point your browser to this URL : `http://localhost:8022/`
     </VirtualHost>
 ```
 
-## Commandline usage:
+## Old versions
 
-```
-usage: achilterm.py [options]
+Old Achilterm versions only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`.
 
-options:
-  -h, --help            show this help message and exit
-  -pPORT, --port=PORT   Set the TCP port (default: 8022)
-  -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
-  -l, --log             log requests to stderr (default: quiet mode)
-  -d, --daemon          run as daemon in the background
-  -PPIDFILE, --pidfile=PIDFILE
-                        set the pidfile (default: /var/run/achilterm.pid)
-  -iINDEX_FILE, --index=INDEX_FILE
-                        default index file (default: achilterm.html)
-  -uUID, --uid=UID      Set the daemon's user id
-```
+ * Achilterm 0.12 require WebOb >= 1.2 (use it with Python 2.6 and 2.7)
+ 
+ * Achilterm 0.11 require WebOb < 1.0 (use it with Python 2.5)
 
 ## Compared to anyterm:
 
