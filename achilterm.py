@@ -26,9 +26,9 @@ import wsgiref.simple_server
 import gzip
 
 try:
-    import cStringIO as StringIO
+    from cStringIO import StringIO
 except ImportError:
-    import StringIO
+    from StringIO import StringIO
 
 class Terminal:
 	def __init__(self,width=80,height=24):
@@ -91,7 +91,7 @@ class Terminal:
 			'K': (self.csi_K,[0]),
 		}
 		for i in [i[4] for i in dir(self) if i.startswith('csi_') and len(i)==5]:
-			if not self.csi_seq.has_key(i):
+			if i not in self.csi_seq:
 				self.csi_seq[i]=(getattr(self,'csi_'+i),[1])
 	def reset(self,s=""):
 		self.scr=array.array('i',[0x000700]*(self.width*self.height))
@@ -336,12 +336,12 @@ class Terminal:
 					r+='<span class="f%d b%d">%s</span>'%(span_fg,span_bg,cgi.escape(span.encode('utf8')))
 				span=""
 				span_bg,span_fg=bg,fg
-                        if c == 0:
-                                span+=' '
-                        elif c > 0x10000:
-                                span+='?'
-                        else:
-                                span+=unichr(c&0xFFFF)
+			if c == 0:
+				span+=' '
+			elif c > 0x10000:
+				span+='?'
+			else:
+				span+=unichr(c&0xFFFF)
 			if i%w==w-1:
 				span+='\n'
 		r='<?xml version="1.0" encoding="UTF-8"?><pre class="term">%s</pre>'%r
@@ -399,6 +399,7 @@ class Multiplex:
 				cmd=['/bin/login']
 			else:
 				sys.stdout.write("Login: ")
+				sys.stdout.flush()
 				login=sys.stdin.readline().strip()
 				if re.match('^[0-9A-Za-z-_. ]+$',login):
 					cmd=['ssh']
@@ -479,8 +480,8 @@ class AchilTerm:
 		self.files={}
 		for i in ['css','html','js']:
 			for j in glob.glob('*.%s'%i):
-				self.files[j]=file(j).read()
-		self.files['index']=file(index_file).read()
+				self.files[j]=open(j).read()
+		self.files['index']=open(index_file).read()
 		self.mime = mimetypes.types_map.copy()
 		self.mime['.html']= 'text/html; charset=UTF-8'
 		self.multi = Multiplex(cmd)
@@ -507,7 +508,7 @@ class AchilTerm:
 			res.content_type = 'text/xml'
 			if isinstance(dump,str):
 				res.content_encoding = 'gzip'
-				zbuf=StringIO.StringIO()
+				zbuf=StringIO()
 				zfile=gzip.GzipFile(mode='wb', fileobj=zbuf)
 				zfile.write(''.join(dump))
 				zfile.close()
@@ -557,14 +558,14 @@ def main():
 				file(o.pidfile,'w+').write(str(pid)+'\n')
 			except:
 				pass
-			print 'Achilterm at http://localhost:%s/ pid: %d' % (o.port,pid)
+			print('Achilterm at http://localhost:%s/ pid: %d' % (o.port,pid))
 			sys.exit(0)
 	else:
-		print 'Achilterm at http://localhost:%s/' % o.port
+		print('Achilterm at http://localhost:%s/' % o.port)
 	at=AchilTerm(o.cmd,o.index_file)
 	try:
 		wsgiref.simple_server.make_server('localhost', int(o.port), at).serve_forever()
-	except KeyboardInterrupt,e:
+	except KeyboardInterrupt:
 		sys.excepthook(*sys.exc_info())
 	at.multi.die()
 
