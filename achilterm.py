@@ -28,7 +28,12 @@ import gzip
 try:
     from cStringIO import StringIO
 except ImportError:
-    from StringIO import StringIO
+    try:
+        from StringIO import StringIO
+    except:
+        from io import BytesIO as StringIO
+
+PY2 = sys.version[0] == '2'
 
 class Terminal:
 	def __init__(self,width=80,height=24):
@@ -333,7 +338,9 @@ class Terminal:
 				bg,fg=1,7
 			if (bg!=span_bg or fg!=span_fg or i==h*w-1):
 				if len(span):
-					r+='<span class="f%d b%d">%s</span>'%(span_fg,span_bg,cgi.escape(span.encode('utf8')))
+					if PY2:
+						span = span.encode('utf-8')
+					r+='<span class="f%d b%d">%s</span>'%(span_fg,span_bg,cgi.escape(span))
 				span=""
 				span_bg,span_fg=bg,fg
 			if c == 0:
@@ -341,7 +348,10 @@ class Terminal:
 			elif c > 0x10000:
 				span+='?'
 			else:
-				span+=unichr(c&0xFFFF)
+				if PY2:
+					span+=unichr(c&0xFFFF)
+				else:
+					span+=chr(c&0xFFFF)
 			if i%w==w-1:
 				span+='\n'
 		r='<?xml version="1.0" encoding="UTF-8"?><pre class="term">%s</pre>'%r
@@ -510,7 +520,10 @@ class AchilTerm:
 				res.content_encoding = 'gzip'
 				zbuf=StringIO()
 				zfile=gzip.GzipFile(mode='wb', fileobj=zbuf)
-				zfile.write(''.join(dump))
+				if not PY2:
+					zfile.write(''.join(dump).encode('utf-8'))
+				else:
+					zfile.write(''.join(dump))
 				zfile.close()
 				zbuf=zbuf.getvalue()
 				res.write(zbuf)
