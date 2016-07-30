@@ -1,6 +1,6 @@
 # Achilterm
 
-Achilterm is an **UTF-8** web based terminal.
+Achilterm is a lightweight **UTF-8** web based terminal.
 
 Achilterm is written in Python (and some AJAX javascript for client side).
 
@@ -22,7 +22,7 @@ Then point your browser to this URL : `http://localhost:8022/`
 
 ## Documentation and Caveats
 
- * Achilterm support Python 2.5 and above
+ * Achilterm support Python 2.5 and above and Python 3
  
  * Achilterm require WebOb >= 1.0
 
@@ -82,7 +82,9 @@ options:
 
 ## Old versions
 
-Old Achilterm versions only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`.
+ * Achilterm 0.13 require Python 2.5 and above
+
+Older Achilterm versions only support latin1, if you use Ubuntu or any `LANG==en_US.UTF-8` distribution don't forget to `$ unset LANG`:
 
  * Achilterm 0.12 require WebOb >= 1.2 (use it with Python 2.6 and 2.7)
  
