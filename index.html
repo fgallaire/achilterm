@@ -31,7 +31,7 @@
         <h1>
 <a id="achilterm" class="anchor" href="#achilterm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Achilterm</h1>
 
-<p>Achilterm is an <strong>UTF-8</strong> web based terminal.</p>
+<p>Achilterm is a lightweight <strong>UTF-8</strong> web based terminal.</p>
 
 <p>Achilterm is written in Python (and some AJAX javascript for client side).</p>
 
@@ -57,7 +57,7 @@ cd achilterm
 <a id="documentation-and-caveats" class="anchor" href="#documentation-and-caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation and Caveats</h2>
 
 <ul>
-<li><p>Achilterm support Python 2.5 and above</p></li>
+<li><p>Achilterm support Python 2.5 and above and Python 3</p></li>
 <li><p>Achilterm require WebOb &gt;= 1.0</p></li>
 <li><p>If run as root achilterm will run /bin/login, otherwise it will run ssh
 localhost. To use an other command use the -c option.</p></li>
@@ -116,7 +116,11 @@ options:
 <h2>
 <a id="old-versions" class="anchor" href="#old-versions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Old versions</h2>
 
-<p>Old Achilterm versions only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>.</p>
+<ul>
+<li>Achilterm 0.13 require Python 2.5 and above</li>
+</ul>
+
+<p>Older Achilterm versions only support latin1, if you use Ubuntu or any <code>LANG==en_US.UTF-8</code> distribution don't forget to <code>$ unset LANG</code>:</p>
 
 <ul>
 <li><p>Achilterm 0.12 require WebOb &gt;= 1.2 (use it with Python 2.6 and 2.7)</p></li>
