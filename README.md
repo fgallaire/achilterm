@@ -10,6 +10,8 @@ Achilterm is initially forked from Ajaxterm which was inspired by Anyterm.
 
 Achilterm is developed by Florent Gallaire <fgallaire@gmail.com>.
 
+Website: http://fgallaire.github.io/achilterm.
+
 ## Download and Install
 
 To install Achilterm use the following commands:
