@@ -41,6 +41,9 @@ Then point your browser to this URL : `http://localhost:8022/`
    interface, but be warned that your keystrokes might be loggued (by apache or
    any proxy). I usually enable it after the login.
 
+## Achiltermlite
+
+Achiltermlite is a stripped-down client-side version of Achilterm. 
 
 ## Commandline usage:
 
@@ -58,6 +61,7 @@ options:
   -iINDEX_FILE, --index=INDEX_FILE
                         default index file (default: achilterm.html)
   -uUID, --uid=UID      Set the daemon's user id
+  -L, --lite            use Achiltermlite
 ```
 
 ## Configuration example

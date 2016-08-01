@@ -486,7 +486,9 @@ class Multiplex:
 				pass
 
 class AchilTerm:
-	def __init__(self,cmd=None,index_file='achilterm.html'):
+	def __init__(self,cmd=None,index_file='achilterm.html',lite=False):
+		if lite:
+			index_file = 'achiltermlite.html'
 		self.files={}
 		for i in ['css','html','js']:
 			for j in glob.glob('*.%s'%i):
@@ -550,6 +552,7 @@ def main():
 	parser.add_option("-P", "--pidfile",dest="pidfile",default="/var/run/achilterm.pid",help="set the pidfile (default: /var/run/achilterm.pid)")
 	parser.add_option("-i", "--index", dest="index_file", default="achilterm.html",help="default index file (default: achilterm.html)")
 	parser.add_option("-u", "--uid", dest="uid", help="Set the daemon's user id")
+	parser.add_option("-L", "--lite", action="store_true", dest="lite", default=0, help="use Achiltermlite")
 	(o, a) = parser.parse_args()
 	if o.daemon:
 		pid=os.fork()
@@ -575,7 +578,7 @@ def main():
 			sys.exit(0)
 	else:
 		print('Achilterm at http://localhost:%s/' % o.port)
-	at=AchilTerm(o.cmd,o.index_file)
+	at=AchilTerm(o.cmd,o.index_file,o.lite)
 	try:
 		wsgiref.simple_server.make_server('localhost', int(o.port), at).serve_forever()
 	except KeyboardInterrupt:
