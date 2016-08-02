@@ -6,7 +6,7 @@ install:
 	install -d "%(lib)s"
 	install achilterm.bin "%(bin)s/achilterm"
 	install achilterm.initd "%(etc)s/init.d/achilterm"
-	install -m 644 achilterm.css achilterm.html achilterm.js sarissa.js sarissa_dhtml.js "%(lib)s"
+	install -m 644 achilterm.css achilterm.html achilterm.js achiltermlite.css achiltermlite.html achiltermlite.js "%(lib)s"
 	install -m 755 achilterm.py "%(lib)s"
 	gzip --best -c achilterm.1 > achilterm.1.gz
 	install -d "%(man)s"
