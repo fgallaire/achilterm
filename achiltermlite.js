@@ -3,7 +3,8 @@ achilterm.Terminal_ctor=function(id,width,height) {
 	var ie=0;
 	if(window.ActiveXObject)
 		ie=1;
-	var chrom = navigator.userAgent.match('Chrom');
+	var chrome = navigator.userAgent.match('Chrome');
+	var webkit = navigator.userAgent.match('WebKit');
 	var sid=""+Math.round(Math.random()*1000000000);
 	var query0="s="+sid+"&w="+width+"&h="+height;
 	var query1=query0+"&c=1&k=";
@@ -129,7 +130,7 @@ achilterm.Terminal_ctor=function(id,width,height) {
 	}
 	function keydown(ev) {
 		if (!ev) var ev=window.event;
-		if (ie || chrom) {
+		if (ie || chrome || webkit) {
 			o={9:1,8:1,27:1,33:1,34:1,35:1,36:1,37:1,38:1,39:1,40:1,45:1,46:1,112:1,
 			113:1,114:1,115:1,116:1,117:1,118:1,119:1,120:1,121:1,122:1,123:1};
 			if (o[ev.keyCode] || ev.ctrlKey || ev.altKey) {
