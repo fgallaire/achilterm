@@ -1,6 +1,5 @@
 from setuptools import setup, find_packages
-
-version = '0.17'
+from achilterm import __version__ as version
 
 setup(name='Achilterm',
       version=version,
