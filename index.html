@@ -63,9 +63,12 @@ cd achilterm
 
 <ul>
 <li>Achilterm support Python 2.5 and above and Python 3.2 and above</li>
+<br/>
 <li>Achilterm require WebOb &gt;= 1.0</li>
+<br/>
 <li>If run as root achilterm will run /bin/login, otherwise it will run
 ssh localhost. To use an other command use the -c option.</li>
+<br/>
 <li>By default Achilterm only listen at <code>127.0.0.1:8022</code>. For remote
 access, it is strongly recommended to use <strong>https SSL/TLS</strong>, and that
 is simple to configure if you use the apache web server using
@@ -73,6 +76,7 @@ is simple to configure if you use the apache web server using
 
 Using ssl will also speed up achilterm (probably because of keepalive).
 </li>
+<br/>
 <li>Using GET HTTP request seems to speed up achilterm, just click on GET
 in the interface, but be warned that your keystrokes might be loggued
 (by apache or any proxy). I usually enable it after the login.</li>
@@ -136,6 +140,7 @@ options:
 
 <ul>
 <li>Achilterm 0.12 require WebOb &gt;= 1.2 (use it with Python 2.6 and 2.7)</li>
+<br/>
 <li>Achilterm 0.11 require WebOb &lt; 1.0 (use it with Python 2.5)</li>
 </ul>
 
@@ -149,6 +154,7 @@ HTTP replies are always gzencoded. When used in 80x25 mode, almost
 all of them are below the 1500 bytes (size of an ethernet frame) and
 we just replace the screen with the reply (no javascript string
 handling).</li>
+<br/>
 <li>Achilterm polls the server for updates with an exponentially growing
 timeout when the screen hasn't changed. The timeout is also resetted
 as soon as a key is pressed. Anyterm blocks on a pending request and
