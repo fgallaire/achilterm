@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
-from achilterm import __version__ as version
+from achilterm.achilterm import __version__ as version
+import os
 
 setup(name='Achilterm',
       version=version,
@@ -29,8 +30,16 @@ setup(name='Achilterm',
           "Programming Language :: Python :: 3.4",
           "Programming Language :: Python :: 3.5",
       ],
-      packages=find_packages(exclude=['docs', 'examples', 'tests']),
-      py_modules=['achilterm'],
+      packages=['achilterm'],
+      package_data={
+          'achilterm': ['*.js', '*.html', '*.css']
+      },
+      entry_points={
+          "console_scripts": ['achilterm = achilterm.achilterm:main']
+      },
+      data_files=[
+          (os.path.join('share','man','man1'), ['achilterm.1'])
+      ],
       include_package_data=True,
       zip_safe=False,
       install_requires=['webob>=1.0'],
