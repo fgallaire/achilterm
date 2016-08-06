@@ -1,0 +1,2 @@
+recursive-include achilterm *html *js *css
+graft img
