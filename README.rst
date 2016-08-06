@@ -1,7 +1,7 @@
 Achilterm
 =========
 
-Achilterm is a lightweight **UTF-8** web based terminal.
+**Achilterm** is a lightweight **UTF-8** web based terminal.
 
 .. image:: https://raw.githubusercontent.com/fgallaire/achilterm/master/img/achilterm.png
 
