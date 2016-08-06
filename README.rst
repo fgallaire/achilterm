@@ -19,13 +19,31 @@ Website: http://fgallaire.github.io/achilterm.
 Download and Install
 --------------------
 
-To install Achilterm use the following commands:
+To install the last stable version from PyPI:
+
+::
+
+    sudo pip install achilterm
+
+To install the development version from GitHub:
 
 ::
 
     git clone https://github.com/fgallaire/achilterm.git
     cd achilterm
-    ./achilterm.py
+    sudo python setup.py install
+
+To run Achilterm after installation:
+
+::
+
+    achilterm
+
+To run Achilterm from the source without installation:
+
+::
+
+    ./achilterm/achilterm.py
 
 Then point your browser to this URL : ``http://localhost:8022/``
 
