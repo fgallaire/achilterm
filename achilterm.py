@@ -546,6 +546,7 @@ class AchilTerm:
 		return res(environ, start_response)
 
 def main():
+	os.chdir(os.path.normpath(os.path.dirname(__file__)))
 	parser = optparse.OptionParser(version='Achilterm version ' + __version__)
 	parser.add_option("-p", "--port", dest="port", default="8022", help="Set the TCP port (default: 8022)")
 	parser.add_option("-c", "--command", dest="cmd", default=None,help="set the command (default: /bin/login or ssh localhost)")
