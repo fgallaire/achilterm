@@ -3,7 +3,7 @@ Achilterm
 
 Achilterm is a lightweight **UTF-8** web based terminal.
 
-.. image:: ./img/achilterm.png
+.. image:: https://raw.githubusercontent.com/fgallaire/achilterm/master/img/achilterm.png
 
 Achilterm is written in Python (and some AJAX javascript for client
 side).
@@ -75,7 +75,7 @@ Achiltermlite
 
 Achiltermlite is a stripped-down client-side version of Achilterm.
 
-.. image:: ./img/achiltermlite.png
+.. image:: https://raw.githubusercontent.com/fgallaire/achilterm/master/img/achiltermlite.png
 
 Commandline usage
 -----------------
