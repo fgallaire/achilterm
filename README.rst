@@ -25,27 +25,27 @@ To install the last stable version from PyPI:
 
 ::
 
-    sudo pip install achilterm
+    $ sudo pip install achilterm
 
 To install the development version from GitHub:
 
 ::
 
-    git clone https://github.com/fgallaire/achilterm.git
-    cd achilterm
-    sudo python setup.py install
+    $ git clone https://github.com/fgallaire/achilterm.git
+    $ cd achilterm
+    $ sudo python setup.py install
 
 To run Achilterm after installation:
 
 ::
 
-    achilterm
+    $ achilterm
 
 To run Achilterm from the source without installation:
 
 ::
 
-    ./achilterm/achilterm.py
+    $ ./achilterm/achilterm.py
 
 Then point your browser to this URL : ``http://localhost:8022/``
 
