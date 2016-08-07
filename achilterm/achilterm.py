@@ -2,7 +2,7 @@
 
 """
     Achilterm is an AJAX web based terminal, very easy to install and to use.
-    Copyright (C) 2013 Florent Gallaire <fgallaire@gmail.com>
+    Copyright (C) 2013-2016 Florent Gallaire <fgallaire@gmail.com>
     Copyright (C) 2006 Antony Lesuisse (email: al AT udev.org)
 
     This program is free software: you can redistribute it and/or modify

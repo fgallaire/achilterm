@@ -82,7 +82,7 @@ Commandline usage
 
 ::
 
-    usage: achilterm.py [options]
+    usage: achilterm [options]
 
     options:
       -h, --help            show this help message and exit

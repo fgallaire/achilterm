@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 from achilterm.achilterm import __version__ as version
 import os
 
