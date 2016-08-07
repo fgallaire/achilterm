@@ -19,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = '0.19'
+__version__ = '0.20'
 
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
@@ -566,8 +566,8 @@ def main():
 		if pid == 0:
 			#os.setsid() ?
 			os.setpgrp()
-			nullin = file('/dev/null', 'r')
-			nullout = file('/dev/null', 'w')
+			nullin = open('/dev/null', 'r')
+			nullout = open('/dev/null', 'w')
 			os.dup2(nullin.fileno(), sys.stdin.fileno())
 			os.dup2(nullout.fileno(), sys.stdout.fileno())
 			os.dup2(nullout.fileno(), sys.stderr.fileno())
@@ -578,7 +578,7 @@ def main():
 					os.setuid(pwd.getpwnam(o.uid).pw_uid)
 		else:
 			try:
-				file(o.pidfile,'w+').write(str(pid)+'\n')
+				open(o.pidfile,'w+').write(str(pid)+'\n')
 			except:
 				pass
 			print('Achilterm at http://localhost:%s/ pid: %d' % (o.port,pid))
