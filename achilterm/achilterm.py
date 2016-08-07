@@ -24,7 +24,7 @@ __version__ = '0.18'
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
 import webob
-import wsgiref.simple_server
+from wsgiref.simple_server import make_server, WSGIRequestHandler
 import gzip
 
 try:
@@ -545,6 +545,10 @@ class AchilTerm:
 				res.write(self.files['index'])
 		return res(environ, start_response)
 
+class NoLogWSGIRequestHandler(WSGIRequestHandler):
+    def log_message(self, format, *args):
+        pass
+
 def main():
 	os.chdir(os.path.normpath(os.path.dirname(__file__)))
 	parser = optparse.OptionParser(version='Achilterm version ' + __version__)
@@ -581,9 +585,13 @@ def main():
 			sys.exit(0)
 	else:
 		print('Achilterm at http://localhost:%s/' % o.port)
+	if o.log:
+		handler_class = WSGIRequestHandler
+	else:
+		handler_class = NoLogWSGIRequestHandler
 	at=AchilTerm(o.cmd,o.index_file,o.lite)
 	try:
-		wsgiref.simple_server.make_server('localhost', int(o.port), at).serve_forever()
+		make_server('localhost', int(o.port), at, handler_class=handler_class).serve_forever()
 	except KeyboardInterrupt:
 		sys.excepthook(*sys.exc_info())
 	at.multi.die()
