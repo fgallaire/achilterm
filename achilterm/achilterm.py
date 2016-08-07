@@ -19,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = '0.18'
+__version__ = '0.19'
 
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
@@ -489,6 +489,7 @@ class Multiplex:
 
 class AchilTerm:
 	def __init__(self,cmd=None,index_file='achilterm.html',lite=False):
+		os.chdir(os.path.normpath(os.path.dirname(__file__)))
 		if lite:
 			index_file = 'achiltermlite.html'
 		self.files={}
@@ -550,14 +551,13 @@ class NoLogWSGIRequestHandler(WSGIRequestHandler):
         pass
 
 def main():
-	os.chdir(os.path.normpath(os.path.dirname(__file__)))
 	parser = optparse.OptionParser(version='Achilterm version ' + __version__)
 	parser.add_option("-p", "--port", dest="port", default="8022", help="Set the TCP port (default: 8022)")
 	parser.add_option("-c", "--command", dest="cmd", default=None,help="set the command (default: /bin/login or ssh localhost)")
 	parser.add_option("-l", "--log", action="store_true", dest="log",default=0,help="log requests to stderr (default: quiet mode)")
 	parser.add_option("-d", "--daemon", action="store_true", dest="daemon", default=0, help="run as daemon in the background")
 	parser.add_option("-P", "--pidfile",dest="pidfile",default="/var/run/achilterm.pid",help="set the pidfile (default: /var/run/achilterm.pid)")
-	parser.add_option("-i", "--index", dest="index_file", default="achilterm.html",help="default index file (default: achilterm.html)")
+	parser.add_option("-i", "--index", dest="index_file", default=0, help="default index file (default: achilterm.html)")
 	parser.add_option("-u", "--uid", dest="uid", help="Set the daemon's user id")
 	parser.add_option("-L", "--lite", action="store_true", dest="lite", default=0, help="use Achiltermlite")
 	(o, a) = parser.parse_args()
@@ -589,7 +589,10 @@ def main():
 		handler_class = WSGIRequestHandler
 	else:
 		handler_class = NoLogWSGIRequestHandler
-	at=AchilTerm(o.cmd,o.index_file,o.lite)
+	if o.index_file:
+		at=AchilTerm(o.cmd,os.path.abspath(o.index_file),o.lite)
+	else:
+		at=AchilTerm(o.cmd,lite=o.lite)
 	try:
 		make_server('localhost', int(o.port), at, handler_class=handler_class).serve_forever()
 	except KeyboardInterrupt:
