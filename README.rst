@@ -85,17 +85,20 @@ Commandline usage
     usage: achilterm [options]
 
     options:
-      -h, --help            show this help message and exit
-      -pPORT, --port=PORT   Set the TCP port (default: 8022)
-      -cCMD, --command=CMD  set the command (default: /bin/login or ssh localhost)
-      -l, --log             log requests to stderr (default: quiet mode)
-      -d, --daemon          run as daemon in the background
-      -PPIDFILE, --pidfile=PIDFILE
-                            set the pidfile (default: /var/run/achilterm.pid)
-      -iINDEX_FILE, --index=INDEX_FILE
-                            default index file (default: achilterm.html)
-      -uUID, --uid=UID      Set the daemon's user id
-      -L, --lite            use Achiltermlite
+      --version                  show program's version number and exit
+      -h, --help                 show this help message and exit
+      -p PORT, --port=PORT       set the TCP port (default: 8022)
+      -c CMD, --command=CMD      set the command (default: /bin/login or ssh localhost)
+      -l, --log                  log requests to stderr (default: quiet mode)
+      -d, --daemon               run as daemon in the background
+      -P PIDFILE, --pidfile=PIDFILE
+                                 set the pidfile (default: /var/run/achilterm.pid)
+      -i INDEX_FILE, --index=INDEX_FILE
+                                 default index file (default: achilterm.html)
+      -u UID, --uid=UID          set the daemon's user id
+      -L, --lite                 use Achiltermlite
+      -w WIDTH, --width=WIDTH    set the width (default: 80)
+      -H HEIGHT, --height=HEIGHT set the height (default: 25)
 
 Configuration example
 ---------------------
