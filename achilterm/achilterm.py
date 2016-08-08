@@ -24,6 +24,7 @@ __version__ = '0.21'
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
 import webob
+from socket import gethostname
 from wsgiref.simple_server import make_server, WSGIRequestHandler
 import gzip
 
@@ -410,7 +411,7 @@ class Multiplex:
 			elif os.getuid()==0:
 				cmd=['/bin/login']
 			else:
-				sys.stdout.write("Login: ")
+				sys.stdout.write(gethostname() + " login: ")
 				sys.stdout.flush()
 				login=sys.stdin.readline().strip()
 				if re.match('^[0-9A-Za-z-_. ]+$',login):
