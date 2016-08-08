@@ -1,4 +1,4 @@
-.TH achilterm "1" "August 2016" "achilterm 0.20" "User commands"
+.TH achilterm "1" "August 2016" "achilterm 0.21" "User commands"
 .SH NAME
 Achilterm \- Web based terminal written in python
 
@@ -15,11 +15,15 @@ It can use almost any web browser and even works through firewalls.
 
 .SH OPTIONS
 A summary of the options supported by \fBachilterm\fR is included below:
-    \fB-h, --help\fR            show this help message and exit
-    \fB-pPORT, --port=PORT\fR   Set the TCP port (default: 8022)
-    \fB-cCMD, --command=CMD\fR  set the command (default: /bin/login or ssh localhost)
-    \fB-l, --log\fR             log requests to stderr (default: quiet mode)
-    \fB-L, --lite\fR            use Achiltermlite
+    \fB--version\fR                  show program's version number and exit
+    \fB-h, --help\fR                 show this help message and exit
+    \fB-p PORT, --port=PORT\fR       set the TCP port (default: 8022)
+    \fB-c CMD, --command=CMD\fR      set the command (default: /bin/login or ssh localhost)
+    \fB-l, --log\fR                  log requests to stderr (default: quiet mode)
+    \fB-d, --daemon\fR               run as daemon in the background
+    \fB-L, --lite\fR                 use Achiltermlite
+    \fB-w WIDTH, --width=WIDTH\fR    set the width (default: 80)
+    \fB-H HEIGHT, --height=HEIGHT\fR set the height (default: 25)
 
 .SH AUTHOR
 Florent Gallaire <fgallaire@gmail.com>

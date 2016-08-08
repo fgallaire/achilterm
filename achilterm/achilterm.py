@@ -19,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__version__ = '0.20'
+__version__ = '0.21'
 
 import array,cgi,fcntl,glob,mimetypes,optparse,os,pty,random,re,signal,select,sys,threading,time,termios,struct,pwd
 
@@ -488,7 +488,7 @@ class Multiplex:
 				pass
 
 class AchilTerm:
-	def __init__(self,cmd=None,index_file='achilterm.html',lite=False):
+	def __init__(self,cmd=None,index_file='achilterm.html',lite=False,width=80,height=25):
 		os.chdir(os.path.normpath(os.path.dirname(__file__)))
 		if lite:
 			index_file = 'achiltermlite.html'
@@ -496,7 +496,7 @@ class AchilTerm:
 		for i in ['css','html','js']:
 			for j in glob.glob('*.%s'%i):
 				self.files[j]=open(j).read()
-		self.files['index']=open(index_file).read()
+		self.files['index']=open(index_file).read() % {'width': width, 'height': height}
 		self.mime = mimetypes.types_map.copy()
 		self.mime['.html']= 'text/html; charset=UTF-8'
 		self.multi = Multiplex(cmd)
@@ -552,14 +552,16 @@ class NoLogWSGIRequestHandler(WSGIRequestHandler):
 
 def main():
 	parser = optparse.OptionParser(version='Achilterm version ' + __version__)
-	parser.add_option("-p", "--port", dest="port", default="8022", help="Set the TCP port (default: 8022)")
+	parser.add_option("-p", "--port", dest="port", default="8022", help="set the TCP port (default: 8022)")
 	parser.add_option("-c", "--command", dest="cmd", default=None,help="set the command (default: /bin/login or ssh localhost)")
 	parser.add_option("-l", "--log", action="store_true", dest="log",default=0,help="log requests to stderr (default: quiet mode)")
 	parser.add_option("-d", "--daemon", action="store_true", dest="daemon", default=0, help="run as daemon in the background")
 	parser.add_option("-P", "--pidfile",dest="pidfile",default="/var/run/achilterm.pid",help="set the pidfile (default: /var/run/achilterm.pid)")
 	parser.add_option("-i", "--index", dest="index_file", default=0, help="default index file (default: achilterm.html)")
-	parser.add_option("-u", "--uid", dest="uid", help="Set the daemon's user id")
+	parser.add_option("-u", "--uid", dest="uid", help="set the daemon's user id")
 	parser.add_option("-L", "--lite", action="store_true", dest="lite", default=0, help="use Achiltermlite")
+	parser.add_option("-w", "--width", dest="width", default="80", help="set the width (default: 80)")
+	parser.add_option("-H", "--height", dest="height", default="25", help="set the height (default: 25)")
 	(o, a) = parser.parse_args()
 	if o.daemon:
 		pid=os.fork()
@@ -590,9 +592,9 @@ def main():
 	else:
 		handler_class = NoLogWSGIRequestHandler
 	if o.index_file:
-		at=AchilTerm(o.cmd,os.path.abspath(o.index_file),o.lite)
+		at=AchilTerm(o.cmd,os.path.abspath(o.index_file),o.lite,o.width,o.height)
 	else:
-		at=AchilTerm(o.cmd,lite=o.lite)
+		at=AchilTerm(o.cmd,lite=o.lite,width=o.width,height=o.height)
 	try:
 		make_server('localhost', int(o.port), at, handler_class=handler_class).serve_forever()
 	except KeyboardInterrupt:
