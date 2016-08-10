@@ -21,33 +21,25 @@ Website: http://fgallaire.github.io/achilterm.
 Download and Install
 --------------------
 
-To install the last stable version from PyPI:
-
-::
+To install the last stable version from PyPI::
 
     $ sudo pip install achilterm
 
-To install the development version from GitHub:
+To install the development version from GitHub::
 
-::
-
-    $ git clone https://github.com/fgallaire/achilterm.git
+    $ git clone https://github.com/fgallaire/achilterm
     $ cd achilterm
     $ sudo python setup.py install
 
-To run Achilterm after installation:
-
-::
+To run Achilterm after installation::
 
     $ achilterm
 
-To run Achilterm from the source without installation:
-
-::
+To run Achilterm from the source without installation::
 
     $ ./achilterm/achilterm.py
 
-Then point your browser to this URL : ``http://localhost:8022/``
+Then point your browser to this URL: ``http://localhost:8022/``
 
 Documentation and Caveats
 -------------------------
@@ -56,8 +48,8 @@ Documentation and Caveats
 
 -  Achilterm require WebOb >= 1.0
 
--  If run as root achilterm will run /bin/login, otherwise it will run
-   ssh localhost. To use an other command use the -c option.
+-  If run as root achilterm will run ``/bin/login``, otherwise it will run
+   ``ssh localhost``. To use an other command use the ``-c`` option.
 
 -  By default Achilterm only listen at ``127.0.0.1:8022``. For remote
    access, it is strongly recommended to use **https SSL/TLS**, and that
