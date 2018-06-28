@@ -1,0 +1,8 @@
+title: Achilterm
+description: Achilterm is a lightweight UTF-8 web based terminal.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-hacker
+
+gems:
+  - jekyll-mentions
